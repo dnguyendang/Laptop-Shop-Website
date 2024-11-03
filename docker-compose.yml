@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  mysql-db:
+    image: mysql:8.0.32
+    container_name: laptopshop
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: laptopshop
+      MYSQL_USER: user
+      MYSQL_PASSWORD: 123456
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
+
+    # docker-compose up -d
+    # docker-compose ps
+
+    #Đăng nhập vào mysql
+    # docker exec -it mysql-container mysql -u root -p
+
+    #Tạo database và user cho từng dự án:
+    # CREATE DATABASE project1_db;
+    # CREATE USER 'project1_user'@'%' IDENTIFIED BY 'password1';
+    # GRANT ALL PRIVILEGES ON project1_db.* TO 'project1_user'@'%';
+    # FLUSH PRIVILEGES;
+
+    #Xóa Container và Volume để Áp Dụng MYSQL_DATABASE Mới
+    #Dừng và xóa container hiện tại:
+    # docker-compose down
+    #Xóa volume để đảm bảo không còn dữ liệu cũ:
+    # docker volume ls
+    # docker volume rm <volume_name>
+    #Chạy lại docker-compose với giá trị MYSQL_DATABASE mới:
+    # docker-compose up -d
